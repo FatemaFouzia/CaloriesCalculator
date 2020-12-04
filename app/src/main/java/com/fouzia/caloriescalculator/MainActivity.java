@@ -34,14 +34,24 @@ public class MainActivity extends AppCompatActivity {
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double number1 = Double.parseDouble(n1.getText().toString());
-                double number2 = Double.parseDouble(n2.getText().toString());
-                double number3 = Double.parseDouble(n3.getText().toString());
+                if(n1.getText().toString().isEmpty()||n2.getText().toString().isEmpty()||n3.getText().toString().isEmpty())
+                {
+                    n1.setError("Please Enter Value");
+                    n2.setError("Please Enter Value");
+                    n3.setError("Please Enter Value");
 
-                double ans = calculate(number1, number2, number3);
-                r1.setText(String.valueOf(ans));
+                }
+                else{
+
+                    double number1 = Double.parseDouble(n1.getText().toString());
+                    double number2 = Double.parseDouble(n2.getText().toString());
+                    double number3 = Double.parseDouble(n3.getText().toString());
+
+                    double ans = calculate(number1, number2, number3);
+                    r1.setText(String.valueOf(ans));
 //                Intent intent=new Intent(MainActivity.this,SecondActivity.class);
 //                startActivity(intent);
+                }
 
             }
         });
