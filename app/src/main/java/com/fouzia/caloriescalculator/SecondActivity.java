@@ -3,6 +3,7 @@ package com.fouzia.caloriescalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ public class SecondActivity extends AppCompatActivity {
 
     TextView text1, text2;
     EditText he1, we1;
-    Button b2;
+    Button b2,b3;
     TextView r2;
 
     @SuppressLint("WrongViewCast")
@@ -28,24 +29,41 @@ public class SecondActivity extends AppCompatActivity {
 
         b2 = findViewById(R.id.calculate2);
         r2 = findViewById(R.id.result2);
+        b3 = findViewById(R.id.next_button);
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double number1 = Double.parseDouble(he1.getText().toString());
-                double number2 = Double.parseDouble(we1.getText().toString());
+                if (he1.getText().toString().isEmpty() || we1.getText().toString().isEmpty()) {
+                    he1.setError("Please Enter Value");
+                    we1.setError("Please Enter Value");
+
+                } else {
+
+                    double number1 = Double.parseDouble(he1.getText().toString());
+                    double number2 = Double.parseDouble(we1.getText().toString());
 
 
-                double ans = calculate( number1, number2);
-                r2.setText(String.valueOf(ans));
+                    double ans = calculate(number1, number2);
+                    r2.setText(String.valueOf(ans));
 //                Intent intent=new Intent(MainActivity.this,SecondActivity.class);
 //                startActivity(intent);
 
+                }
             }
 
 
         });
 
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
+                startActivity(intent);
+
+                //statActivity(new Intent(MainActivity.this,SecondActivity.class));
+            }
+        });
     }
 
     private double calculate(double he1, double we1) {
@@ -55,3 +73,4 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 }
+
